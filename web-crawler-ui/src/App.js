@@ -8,11 +8,6 @@ function App() {
 
   return (
     <div className='App'>
-    {/* <div >
-      <h1>Count: {count}</h1>
-      <button onClick={increase}>Increase</button>
-      <button onClick={decrease}>Decrease</button>
-    </div> */}
       <Sidebar/>
       <MainPage />
     </div>
