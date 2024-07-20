@@ -1,11 +1,18 @@
 import React from 'react';
 import useStore from '../store';
+import '../styles/_searchBar.scss'
 
-const SearchBar = ()=>{
-    var { prompt_response, search } = useStore()
+const SearchBar = ({handleCrawl})=>{
+
+    const { url, isCrawling, setUrl } = useStore();
     return(
-        <div className='search-div'>
-            <input className='search-div-inp' type="text" value = {prompt_response} onChange = {(e)=>search(e.target.value)}/>
+
+        <div className="input-wrapper">
+            <input type="text"  placeholder='Web Crawl URL ' value = {url} onChange = {(e)=>setUrl(e.target.value)} />
+            <button type="submit" onClick={handleCrawl}  disabled={isCrawling || !url}>
+                {isCrawling ? <i className="fa-solid fa-circle-up large-2x"  disabled/> : <i className="fa-solid fa-circle-up large-2x" />}
+                 
+            </button>
         </div>
     )
 }

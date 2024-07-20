@@ -1,3 +1,26 @@
-Web_crawler/web-crawler-ui/node_modules
-Web_crawler/web-crawler-server/node_modules
-Web_crawler/web-crawler-server/.env
+/web-crawler-server/node_modules/*
+/web-crawler-server/.env
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/web-crawler-ui/node_modules/*
+/web-crawler-ui/.pnp
+/web-crawler-ui/.pnp.js
+
+# testing
+/web-crawler-ui/coverage
+
+# production
+/web-crawler-ui/build
+
+# misc
+/web-crawler-ui/.DS_Store
+/web-crawler-ui/.env.local
+/web-crawler-ui/.env.development.local
+/web-crawler-ui/.env.test.local
+/web-crawler-ui/.env.production.local
+
+/web-crawler-ui/npm-debug.log*
+/web-crawler-ui/yarn-debug.log*
+/web-crawler-ui/yarn-error.log*

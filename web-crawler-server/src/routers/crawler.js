@@ -6,9 +6,8 @@ const url = require('url');
 
 const crawledUrls = new Set();
 
-const crawlPage = async (pageUrl) => {
-    if (crawledUrls.has(pageUrl)) {
-        console.log(`Already crawled: ${pageUrl}`);
+const crawlPage = async (pageUrl, sendEvent, depth = 0) => {
+    if (crawledUrls.has(pageUrl) || depth > 3) { // depth check for recursive crawling
         return;
     }
 
@@ -26,7 +25,10 @@ const crawlPage = async (pageUrl) => {
         // Add to crawled URLs
         crawledUrls.add(pageUrl);
 
-        // Extract and crawl links
+        // Send event to client
+        sendEvent('pageCrawled', { url: pageUrl, title, content });
+
+        // Extract and filter links
         const links = [];
         $('a[href]').each((index, element) => {
             const href = $(element).attr('href');
@@ -38,7 +40,7 @@ const crawlPage = async (pageUrl) => {
 
         // Recursively crawl extracted links
         for (const link of links) {
-            await crawlPage(link);
+            await crawlPage(link, sendEvent, depth + 1);
         }
 
     } catch (error) {
